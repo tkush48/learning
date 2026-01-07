@@ -1,0 +1,11 @@
+Reliable CI/CD for Multi-Service Platform on AWS (EKS + Argo CD / Harness) 
+Scenario: 6 services (Node.js, Python, React) deployed on EKS across Dev → Staging → Prod. 
+Goal: Fast, safe deployments with canary/blue-green, image signing, and observability. 
+Requirements: 
+CI/CD via GitHub Actions or Harness, images in ECR. 
+Progressive delivery using Argo Rollouts or Harness. 
+Secrets in AWS Secrets Manager or SSM Parameter Store. 
+Define SLIs/SLOs and burn rate alerts; dashboards in New Relic or Prometheus/Grafana. 
+Expected Deliverables: 
+Design Approach: Architecture diagram (SCM → CI → ECR → CD → EKS); choice of Canary vs Blue-Green with trade-offs; SLOs (availability, p95 latency, error rate); rollback criteria. 
+Implementation Plan: GitHub Actions/YAML (build/test/scan/sign with Trivy + cosign); Helm/Kustomize overlays; Argo Rollouts steps; IaC with Terraform modules (VPC, EKS, ECR, IAM); alert routing (Alert manager/SNS/New Relic). 

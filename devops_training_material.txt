@@ -1,0 +1,102 @@
+Docker
+Dockerfile
+Image vs Container
+Volumes (persistent storage)
+Networking (bridge, host)
+Docker Compose
+Best Practices (multi-stage builds)
+
+
+AWS
+Compute: EC2, Lambda, ECS, EKS
+Networking: VPC, Subnets, Security Groups, NAT Gateway, Load Balancer
+Storage: S3, EBS, EFS
+IAM: Roles, Policies
+Monitoring: CloudWatch
+Others: Route 53, RDS, Auto Scaling
+
+
+1. RDS Connection Issues
+Symptoms: Application cannot connect to RDS instance.
+Checks & Fixes:
+Verify Security Group allows inbound traffic on DB port (e.g., 3306 for MySQL).
+Ensure VPC/Subnet routing is correct (private vs public).
+Check DNS resolution for RDS endpoint.
+If using IAM auth, confirm token validity and SSL settings.
+ 
+ 
+2. High CPU Utilization
+Symptoms: CPU spikes during peak traffic.
+Checks & Fixes:
+Use Performance Insights to identify slow queries.
+Add Read Replicas for read-heavy workloads.
+Optimize queries and indexes.
+Scale up instance class or switch to Provisioned IOPS storage.
+ 
+ 
+3. Storage Full
+Symptoms: DB stops accepting writes.
+Checks & Fixes:
+Enable storage auto-scaling.
+Clean up old data or logs.
+Monitor CloudWatch metrics for Free Storage Space.
+ 
+ 
+4. Slow Query Performance
+
+Symptoms: Queries take longer than expected.
+Checks & Fixes:
+Analyze Performance Insights and slow query logs.
+Tune parameter groups (e.g., innodb_buffer_pool_size).
+Consider upgrading to io2 EBS volumes for better IOPS.
+ 
+ 
+5. Multi-AZ Failover Issues
+Symptoms: Failover takes too long or app disconnects.
+Checks & Fixes:
+Ensure DNS caching in app is low (TTL).
+Validate connection retry logic in application.
+Check CloudWatch events for failover triggers.
+ 
+ 
+6. Backup Failures
+Symptoms: Automated backups or snapshots fail.
+Checks & Fixes:
+Verify backup window does not overlap with heavy load.
+Check IAM permissions for AWS Backup.
+Ensure storage space is sufficient for snapshots.
+ 
+ 
+7. Parameter Group Misconfiguration
+Symptoms: DB crashes after parameter change.
+Checks & Fixes:
+Review parameter group changes before applying.
+Use apply during maintenance window for risky changes.
+Roll back to previous parameter group if needed.
+ 
+ 
+8. SSL/TLS Connection Errors
+Symptoms: App cannot connect after enabling SSL.
+Checks & Fixes:
+Ensure SSL certificates are updated.
+Verify connection string includes SSL options.
+Check parameter group settings for SSL enforcement.
+
+ 
+Docker
+
+Dockerfile: Instructions, CMD vs ENTRYPOINT, caching
+Image vs Container: Immutable image vs running instance
+Volumes: Persistent storage (named volumes, bind mounts)
+Networking: Bridge, Host, Overlay
+Docker Compose: Multi-container orchestration
+Best Practices: Multi-stage builds, minimal base images, .dockerignore
+ 
+Kubernetes
+Network Policy: Pod-to-pod communication control
+RBAC: Roles, RoleBindings, ClusterRoles
+Probes: Liveness, Readiness, Startup
+HPA: Horizontal Pod Autoscaler (CPU/memory/custom metrics)
+Config Management: ConfigMaps, Secrets
+Troubleshooting: kubectl logs, describe, Events, CrashLoopBackOff
+ 
